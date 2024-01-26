@@ -20,9 +20,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/docker/distribution"
-	"github.com/docker/distribution/manifest/manifestlist"
-	"github.com/docker/distribution/manifest/schema2"
+	"github.com/distribution/distribution/v3"
+	"github.com/distribution/distribution/v3/manifest/manifestlist"
+	"github.com/distribution/distribution/v3/manifest/schema2"
 	"github.com/opencontainers/go-digest"
 	v1 "github.com/opencontainers/image-spec/specs-go/v1"
 
@@ -73,7 +73,10 @@ func (m *ManifestListCache) CacheContent(ctx context.Context, _ string, man dist
 		log.Errorf("failed to get reference, reference is empty, skip to cache manifest list")
 		return
 	}
-	// some registry will not return the digest in the HEAD request, if no digest returned, cache manifest list content with tag
+	// cache key should contain digest if digest exist
+	if len(art.Digest) == 0 {
+		art.Digest = string(digest.FromBytes(payload))
+	}
 	key := manifestListKey(art.Repository, art)
 	log.Debugf("cache manifest list with key=cache:%v", key)
 	if err := m.cache.Save(ctx, manifestListContentTypeKey(art.Repository, art), contentType, manifestListCacheInterval); err != nil {

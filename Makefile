@@ -103,12 +103,12 @@ PKGVERSIONTAG=dev
 PREPARE_VERSION_NAME=versions
 
 #versions
-REGISTRYVERSION=v2.8.3-patch-redis
+REGISTRYVERSION=v3.0.0-alpha.1+redis-sentinel
 TRIVYVERSION=v0.47.0
 TRIVYADAPTERVERSION=v0.30.19
 
 # version of registry for pulling the source code
-REGISTRY_SRC_TAG=v2.8.3
+REGISTRY_SRC_TAG=v3.0.0-alpha.1
 
 # dependency binaries
 REGISTRYURL=https://storage.googleapis.com/harbor-builds/bin/registry/release-${REGISTRYVERSION}/registry
@@ -451,16 +451,6 @@ package_offline: update_prepare_version compile build
 	@$(TARCMD) $(PACKAGE_OFFLINE_PARA)
 	@rm -rf $(HARBORPKG)
 	@echo "Done."
-
-gosec:
-	#go get github.com/securego/gosec/cmd/gosec
-	#go get github.com/dghubble/sling
-	@echo "run secure go scan ..."
-	@if [ "$(GOSECRESULTS)" != "" ] ; then \
-		$(GOPATH)/bin/gosec -fmt=json -out=$(GOSECRESULTS) -quiet ./... | true ; \
-	else \
-		$(GOPATH)/bin/gosec -fmt=json -out=harbor_gas_output.json -quiet ./... | true ; \
-	fi
 
 go_check: gen_apis mocks_check misspell commentfmt lint
 

@@ -19,7 +19,7 @@ import (
 	"io"
 	"testing"
 
-	"github.com/docker/distribution"
+	"github.com/distribution/distribution/v3"
 	"github.com/opencontainers/go-digest"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
@@ -209,7 +209,7 @@ func TestGetRef(t *testing.T) {
 		{
 			name: `normal`,
 			in:   lib.ArtifactInfo{Repository: "hello-world", Tag: "latest", Digest: "sha256:aabbcc"},
-			want: "latest",
+			want: "sha256:aabbcc",
 		},
 		{
 			name: `digest_only`,
