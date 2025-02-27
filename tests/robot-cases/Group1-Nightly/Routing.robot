@@ -27,7 +27,7 @@ Test Case - Main Menu Routing
     Init Chrome Driver
     Sign In Harbor  ${HARBOR_URL}  ${HARBOR_ADMIN}  ${HARBOR_PASSWORD}
     &{routing}=	 Create Dictionary  harbor/projects=//projects//div//h2[contains(.,'Projects')]
-    ...  harbor/logs=//hbr-log//div//h2[contains(.,'Logs')]
+    ...  harbor/logs=//hbr-audit-log//div//h2[contains(.,'Logs')]
     ...  harbor/users=//harbor-user//div//h2[contains(.,'Users')]
     ...  harbor/robot-accounts=//system-robot-accounts//h2[contains(.,'Robot Accounts')]
     ...  harbor/registries=//hbr-endpoint//h2[contains(.,'Registries')]
