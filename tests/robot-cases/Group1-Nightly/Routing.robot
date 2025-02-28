@@ -65,7 +65,7 @@ Test Case - Project Tab Routing
     ...  harbor/projects/1/tag-strategy/immutable-tag=//project-detail//app-tag-feature-integration//app-immutable-tag
     ...  harbor/projects/1/robot-account=//project-detail//app-robot-account
     ...  harbor/projects/1/webhook=//project-detail//ng-component//button//span[contains(.,'New Webhook')]
-    ...  harbor/projects/1/logs=//project-detail/project-audit-log
+    ...  harbor/projects/1/logs=//project-detail/project-logs
     ...  harbor/projects/1/configs=//project-detail//app-project-config//hbr-project-policy-config
     FOR  ${key}  IN  @{routing.keys()}
         Retry Double Keywords When Error  Go To  ${HARBOR_URL}/${key}  Retry Wait Element  ${routing['${key}']}
