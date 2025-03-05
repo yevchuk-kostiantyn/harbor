@@ -41,7 +41,7 @@ Click Exclude Operation
 Verify Last completed Time
     ${latest_purge_job_update_time}=  Get Text  ${latest_purge_job_update_time_xpath}
     ${purge_job_last_completed_time}=  Get Text  ${purge_job_last_completed_time_xpath}
-    Should Be Equal  ${latest_purge_job_update_time}(Dry Run)  ${purge_job_last_completed_time}
+    Should Be Equal  ${latest_purge_job_update_time}  ${purge_job_last_completed_time}
 
 Set Log Rotation Schedule
     [Arguments]  ${keep_records}  ${keep_records_unit}  ${type}  ${cron}=${null}  ${exclude_operations}=@{EMPTY}
